@@ -11,7 +11,7 @@ import { checkSession } from '../service/api/session'
 
 const HomeScreen = () => {
   const {user,sessions,addSession,removeSession} = useUserStore();
-  //const {addSessionId,removeSessionId} = useLiveMeetStore();
+  const {addSessionId,removeSessionId} = useLiveMeetStore();
   const {emit} = useWS();
   const handleNaviagte=()=>{
           const storedName = user?.name;
@@ -22,7 +22,7 @@ const HomeScreen = () => {
           navigate('JoinMeetScreen');    
       }
   
-  const joinViaSessionId = async(sessionId) => {
+  const joinViaSessionId = async(id) => {
      const storedName = user?.name;
               if(!storedName){
                   Alert.alert("Please enter your name");
@@ -35,10 +35,11 @@ const HomeScreen = () => {
           sessionId:removeHyphens(id)
         });
         addSession(id);
+        addSessionId(id);
         navigate("PrepareMeetScreen",{id});
       }else{
         removeSession(id);
-        //removeSessionId(id);
+        removeSessionId(id);
         Alert.alert("There is no meet found");
 
       }
@@ -71,7 +72,7 @@ const HomeScreen = () => {
       data={sessions}
       renderItem={renderSessions}
       key={(item)=>item}
-      contentContainerStyle={{padding:20}}
+      contentContainerStyle={{padding:8}}
       ListEmptyComponent={
         <View>
           <Image 

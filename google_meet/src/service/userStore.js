@@ -26,7 +26,7 @@ export const useUserStore = create()(
         }),
         {
             name : "user-storage",
-            storage : createJSONStorage(()=>mmkvStorage())
+            storage : createJSONStorage(()=>mmkvStorage)
         }
     )
 )
