@@ -7,5 +7,5 @@ import { Platform } from "react-native";
 // 'https://meet-server-gctk.onrender.com'
 // 'wss://meet-server-gctk.onrender.com'
 
-export const BASE_URL = 'http://192.168.14.16:3000'
-export const SOCKET_URL = 'ws://192.168.14.16:3000'
+export const BASE_URL = 'http://192.168.201.16:3000'
+export const SOCKET_URL = 'ws://192.168.201.16:3000'

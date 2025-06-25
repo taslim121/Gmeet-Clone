@@ -8,7 +8,7 @@ import { useWS } from '../service/api/WSProvider'
 import { useLiveMeetStore } from '../service/meetStore'
 import { addHyphens, removeHyphens } from '../utils/Helpers'
 import { checkSession } from '../service/api/session'
-
+import MaterialIcons from '@react-native-vector-icons/material-design-icons';
 const HomeScreen = () => {
   const {user,sessions,addSession,removeSession} = useUserStore();
   const {addSessionId,removeSessionId} = useLiveMeetStore();
@@ -91,7 +91,7 @@ const HomeScreen = () => {
       style={homeStyles.absoluteButton}
       onPress={handleNaviagte}
       >
-        <Text style={{fontSize:20}}>📷</Text>
+         <MaterialIcons name="video-outline" size={20} color="#fff" />
         <Text style={homeStyles.buttonText}>Join Meet</Text>
 
       </TouchableOpacity>

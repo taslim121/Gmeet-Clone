@@ -4,6 +4,8 @@ import { headerStyles } from '../styles/headerStyles'
 import { useUserStore } from '../service/userStore'
 import InquiryModal from './InquiryModal'
 import { navigate } from '../utils/NavigationUtils'
+import MaterialIcons from '@react-native-vector-icons/material-design-icons';
+
 const HomeHeader = () => {
     const [visible,setVisible] = useState(true);
     const {user} = useUserStore();
@@ -30,12 +32,12 @@ const HomeHeader = () => {
     <View>
       <SafeAreaView/>
       <View style={headerStyles.container}>
-       <Text style={{fontSize:20}}>🍔</Text>
+       <MaterialIcons name="home" size={20} color="#000" />
         <TouchableOpacity onPress={handleNaviagte} style={headerStyles.textContainer}>
             <Text style={headerStyles.placeholderText}>Enter meeting Code</Text>
           </TouchableOpacity> 
         <TouchableOpacity onPress={()=>setVisible(true)}>
-            <Text style={{fontSize:20}}>👤</Text>
+            <MaterialIcons name="account" size={20} color="#000" />
         </TouchableOpacity> 
       </View>
       <InquiryModal onClose={()=>setVisible(false)} visible={visible}/>

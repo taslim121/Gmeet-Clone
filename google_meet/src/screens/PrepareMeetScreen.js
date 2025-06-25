@@ -8,6 +8,8 @@ import { useLiveMeetStore } from '../service/meetStore';
 import { addHyphens,requestPermissions } from '../utils/Helpers';
 import { replace,goBack } from '../utils/NavigationUtils';
 import { Colors } from '../utils/Constants';
+import MaterialIcons from '@react-native-vector-icons/material-design-icons';
+
 const PrepareMeetScreen = () => {
   const {emit,on,off} =useWS();
   const{addSessionId,addParticipant,sessionId,toggle,micOn,videoOn}=useLiveMeetStore();
@@ -19,6 +21,7 @@ const PrepareMeetScreen = () => {
 
     const handleParticipantsUpdate = (updatedParticipants) => {
       setParticipants(updatedParticipants?.participants);
+      updatedParticipants?.participants?.forEach(i => addParticipant(i));
     };
     on('session-info', handleParticipantsUpdate);
     
@@ -165,12 +168,12 @@ const PrepareMeetScreen = () => {
                   <TouchableOpacity onPress={() => toggleLocal('mic')}
                     style={prepareStyles.iconButton}>
                     <Text>
-                      {micOn ? '🎙️' : '🎙️❌'}
+                      {micOn ? <MaterialIcons name="microphone" size={24} color="#fff" /> : <MaterialIcons name='microphone-off' size={24} color={"#fff"}/>}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity onPress={() => toggleLocal('video')} style={prepareStyles.iconButton}>
                     <Text>
-                      {videoOn ? '🎥' : '🎥❌'}
+                      {videoOn ? <MaterialIcons name="video" size={24} color="#fff" /> : <MaterialIcons name="video-off" size={24} color="#fff" />}
                     </Text>
                   </TouchableOpacity>
                 

@@ -9,7 +9,7 @@ import { useUserStore } from '../service/userStore'
 import { useLiveMeetStore } from '../service/meetStore'
 import { Colors } from '../utils/Constants'
 import LinearGradient from 'react-native-linear-gradient'
-
+import MaterialIcons from '@react-native-vector-icons/material-design-icons';
 
 const JoinMeetScreen = () => {
 
@@ -30,17 +30,17 @@ const JoinMeetScreen = () => {
   }
 
   const joinViaSessionId = async () => {
-    const isAvailable = await checkSession(removeHyphens(code));
-
+    const id = removeHyphens(code)
+    const isAvailable = await checkSession(id);
     if (isAvailable) {
-      emit('prepare-session', { userId: user?.id, sessionId: removeHyphens(code) });
-      addSession(code);
-      addSessionId(code);
+      emit('prepare-session', { userId: user?.id, sessionId: id });
+      addSession(id);
+      addSessionId(id);
       navigate('PrepareMeetScreen');
     } else {
       // Handle invalid session ID
-      removeSession(code);
-      removeSessionId(code);
+      removeSession(id);
+      removeSessionId(id);
       setCode('');
       Alert.alert('No Meeting Found');
     }
@@ -71,7 +71,7 @@ const JoinMeetScreen = () => {
         activeOpacity={0.7}
         onPress={createNewMeet}
         >
-           <Text style={{fontSize:20}}>📷</Text>
+           <MaterialIcons name="camera-outline" size={25} color="#fff" />
            <Text style={joinStyles.buttonText}>Create New Meet</Text>
         </TouchableOpacity>
       </LinearGradient>
